@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Lead of the Hour</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #ffffff;
+      color: red;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 2px solid red;
+      z-index: 1000;
+    }
+    #team-lead {
+      margin-top: 80px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Team Lead of the Hour (Atlanta Time)
+  </header>
+  <div id="team-lead">
+    Loading current team lead...
+  </div>
+
+  <script>
+    const schedule = [
+      // January
+      { date: '2025-01-16', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-01-16', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-01-17', day: 'Friday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-01-17', day: 'Friday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-01-18', day: 'Saturday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-01-18', day: 'Saturday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-01-19', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-01-20', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-01-21', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-01-22', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-01-22', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-01-23', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-01-23', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-01-24', day: 'Friday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-01-24', day: 'Friday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-01-25', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-01-25', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-01-26', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-01-27', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-01-28', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-01-29', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '12:00' },
+      { date: '2025-01-29', day: 'Wednesday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-01-30', day: 'Thursday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-01-30', day: 'Thursday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-01-31', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-01-31', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+
+      // February
+      { date: '2025-02-01', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-01', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-02', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-02-03', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-04', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-05', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-02-05', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-02-06', day: 'Thursday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-06', day: 'Thursday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-07', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-07', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-08', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-08', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-09', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-02-10', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-11', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-12', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '12:00' },
+      { date: '2025-02-12', day: 'Wednesday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-13', day: 'Thursday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-13', day: 'Thursday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-14', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-14', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-15', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-15', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-16', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-02-17', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-18', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-19', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-02-19', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-02-20', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-02-20', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-02-21', day: 'Friday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-02-21', day: 'Friday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-02-22', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-22', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-02-23', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-02-24', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-25', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-02-26', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-02-26', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-02-27', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-02-27', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-02-28', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-02-28', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },  
+      // March
+      { date: '2025-03-01', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-01', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-02', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-03-03', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-04', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-05', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-03-05', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-03-06', day: 'Thursday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-06', day: 'Thursday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-07', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-07', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-08', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-08', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-09', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-03-10', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-11', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-12', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '12:00' },
+      { date: '2025-03-12', day: 'Wednesday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-13', day: 'Thursday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-13', day: 'Thursday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-14', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-14', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-15', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-15', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-16', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-03-17', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-18', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-19', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-03-19', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-03-20', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-03-20', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-03-21', day: 'Friday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-03-21', day: 'Friday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-03-22', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-22', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-23', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-03-24', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-25', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-26', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-03-26', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-03-27', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-03-27', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-03-28', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-28', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-29', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-03-29', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-03-30', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-03-31', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-03-31', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      // April
+      { date: '2025-04-01', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-02', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-04-02', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-04-03', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-04-03', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-04-04', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-04-04', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-04-05', day: 'Saturday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-04-05', day: 'Saturday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-04-06', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-04-07', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-08', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-09', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-04-09', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-04-10', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-04-10', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-04-11', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-04-11', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-04-12', day: 'Saturday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-04-12', day: 'Saturday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-04-13', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-04-14', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-15', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-16', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '12:00' },
+      { date: '2025-04-16', day: 'Wednesday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-04-17', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-04-17', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-04-18', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-04-18', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-04-19', day: 'Saturday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-04-19', day: 'Saturday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-04-20', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-04-21', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-22', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-23', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-04-23', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-04-24', day: 'Thursday', name: 'Noah', start: '07:00', end: '15:00' },
+      { date: '2025-04-24', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-04-25', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-04-25', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-04-26', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-04-26', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-04-27', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-04-28', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-29', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-04-30', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '12:00' },
+      { date: '2025-04-30', day: 'Wednesday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-06-01', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-06-02', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-03', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-04', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-06-04', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-05', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-06-05', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-06', day: 'Friday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-06-06', day: 'Friday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-07', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-06-07', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-06-08', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-06-09', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-10', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-11', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-06-11', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-12', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-06-12', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-13', day: 'Friday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-06-13', day: 'Friday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-14', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-06-14', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-06-15', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-06-16', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-17', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-18', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '14:00' },
+      { date: '2025-06-18', day: 'Wednesday', name: 'Natali', start: '14:00', end: '20:00' },
+      { date: '2025-06-19', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-06-19', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-20', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-06-20', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-06-21', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-06-21', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-06-22', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-06-23', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-24', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-06-25', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '14:00' },
+      { date: '2025-06-25', day: 'Wednesday', name: 'Natali', start: '14:00', end: '20:00' },
+      { date: '2025-06-26', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-06-26', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-06-27', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-06-27', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-06-28', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-06-28', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-06-29', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-06-30', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      // July
+      { date: '2025-07-01', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-02', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '14:00' },
+      { date: '2025-07-02', day: 'Wednesday', name: 'Natali', start: '14:00', end: '20:00' },
+      { date: '2025-07-03', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-07-03', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-04', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-04', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-05', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-05', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-06', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-07-07', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-08', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-09', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-07-09', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-10', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-07-10', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-11', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-11', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-12', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-12', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-13', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-07-14', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-15', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-16', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-07-16', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-17', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-07-17', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-18', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-18', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-19', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-19', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-20', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-07-21', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-22', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-23', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-07-23', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-24', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-07-24', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-25', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-25', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-26', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-07-26', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-07-27', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-07-28', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-29', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-07-30', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '13:00' },
+      { date: '2025-07-30', day: 'Wednesday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-07-31', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-07-31', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      // August
+      { date: '2025-08-01', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-08-01', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-08-02', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-08-02', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-08-03', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-08-04', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-05', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-06', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-06', day: 'Wednesday', name: 'Natali', start: '17:00', end: '20:00' },
+      { date: '2025-08-07', day: 'Thursday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-08-07', day: 'Thursday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-08-08', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-08-08', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-08-09', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-08-09', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-08-10', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-08-11', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-12', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-13', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-08-13', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-08-14', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-08-14', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-08-15', day: 'Friday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-08-15', day: 'Friday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-08-16', day: 'Saturday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-08-16', day: 'Saturday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-08-17', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-08-18', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-19', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-20', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-08-20', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-08-21', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-08-21', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-08-22', day: 'Friday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-08-22', day: 'Friday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-08-23', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-08-23', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-08-24', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+      { date: '2025-08-25', day: 'Monday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-26', day: 'Tuesday', name: 'Vinz', start: '07:00', end: '17:00' },
+      { date: '2025-08-27', day: 'Wednesday', name: 'Vinz', start: '07:00', end: '15:00' },
+      { date: '2025-08-27', day: 'Wednesday', name: 'Natali', start: '15:00', end: '20:00' },
+      { date: '2025-08-28', day: 'Thursday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-08-28', day: 'Thursday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-08-29', day: 'Friday', name: 'Noah', start: '07:00', end: '13:00' },
+      { date: '2025-08-29', day: 'Friday', name: 'Natali', start: '13:00', end: '20:00' },
+      { date: '2025-08-30', day: 'Saturday', name: 'Noah', start: '07:00', end: '12:00' },
+      { date: '2025-08-30', day: 'Saturday', name: 'Natali', start: '12:00', end: '20:00' },
+      { date: '2025-08-31', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' },
+
+  
+      { date: '2025-08-31', day: 'Sunday', name: 'Noah', start: '07:00', end: '17:00' }
+    ];
+
+    function formatTime(date, time) {
+      const [hours, minutes] = time.split(':').map(Number);
+      date.setHours(hours, minutes, 0, 0);
+      return date;
+    }
+
+    function getCurrentTeamLead() {
+      const now = new Date();
+      const atlantaOffset = -5; // Offset for EST (adjust for DST manually if needed)
+      const utcOffset = now.getTimezoneOffset() / 60;
+      now.setHours(now.getHours() + atlantaOffset + utcOffset);
+
+      const today = now.toISOString().split('T')[0];
+      const currentTime = now.getHours() * 100 + now.getMinutes();
+
+      for (const entry of schedule) {
+        if (entry.date === today) {
+          const start = formatTime(new Date(entry.date), entry.start).getHours() * 100 + formatTime(new Date(entry.date), entry.start).getMinutes();
+          const end = formatTime(new Date(entry.date), entry.end).getHours() * 100 + formatTime(new Date(entry.date), entry.end).getMinutes();
+
+          if (currentTime >= start && currentTime < end) {
+            return `${entry.day}, ${entry.date}: ${entry.name} is the Team Lead from ${entry.start} to ${entry.end}`;
+          }
+        }
+      }
+
+      return 'No team lead is assigned for the current hour.';
+    }
+
+    document.getElementById('team-lead').innerText = getCurrentTeamLead();
+  </script>
+</body>
+</html>
